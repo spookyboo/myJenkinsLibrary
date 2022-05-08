@@ -1,4 +1,8 @@
 pipeline {
+    environment {
+        // Variable used for testing the flow
+        main = 'main'
+    }
     agent any
 
     stages {
@@ -19,7 +23,7 @@ pipeline {
         }
         stage('Analyze code') {
             when {
-                branch 'main'
+                branch "${main}"
             }
             steps {
                 echo 'Stage: Analyze code'
@@ -37,7 +41,7 @@ pipeline {
         }
         stage('Provision test environment') {
             when {
-                branch 'main'
+                branch "${main}"
             }
             steps {
                 echo 'Stage: Provision test environment'
@@ -45,7 +49,7 @@ pipeline {
         }
         stage('Deploy artifact to test') {
             when {
-                branch 'main'
+                branch "${main}"
             }
             steps {
                 echo 'Stage: Deploy artifact to test'
@@ -53,7 +57,7 @@ pipeline {
         }
         stage('Perform test') {
             when {
-                branch 'main'
+                branch "${main}"
             }
             steps {
                 echo 'Stage: Perform test'
@@ -61,7 +65,7 @@ pipeline {
         }
         stage('Validate infrastructure compliancy') {
             when {
-                branch 'main'
+                branch "${main}"
             }
             steps {
                 echo 'Stage: Validate infrastructure compliancy'
@@ -69,7 +73,7 @@ pipeline {
         }
         stage('Validate exit criteria') {
             when {
-                branch 'main'
+                branch "${main}"
             }
             steps {
                 echo 'Stage: Validate exit criteria'
@@ -77,7 +81,7 @@ pipeline {
         }
         stage('Perform dual control') {
             when {
-                branch 'main'
+                branch "${main}"
             }
             steps {
                 echo 'Stage: Perform dual control'
@@ -85,7 +89,7 @@ pipeline {
         }
         stage('Provision production infrastructure') {
             when {
-                branch 'main'
+                branch "${main}"
             }
             steps {
                 echo 'Stage: Provision production infrastructure'
@@ -93,7 +97,7 @@ pipeline {
         }
         stage('Deploy artifact to production') {
             when {
-                branch 'main'
+                branch "${main}"
             }
             steps {
                 echo 'Stage: Deploy artifact to production'
