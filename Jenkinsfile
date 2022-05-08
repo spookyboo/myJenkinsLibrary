@@ -2,20 +2,112 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Validate entry criteria') {
             steps {
-                echo 'Building..'
+                echo 'Stage: Validate entry criteria'
             }
         }
-        stage('Test') {
+        stage('Execute build') {
             steps {
-                echo 'Testing..'
+                echo 'Stage: Execute build'
             }
         }
-        stage('Deploy') {
+        stage('Perform unittests') {
             steps {
-                echo 'Deploying....'
+                echo 'Stage: Perform unittests'
             }
+        }
+        stage('Analyze code') {
+            when {
+                branch 'main'
+            }
+            steps {
+                echo 'Stage: Analyze code'
+            }
+        }
+        stage('Package artifact') {
+            steps {
+                echo 'Stage: Package artifact'
+            }
+        }
+        stage('Publish artifact') {
+            steps {
+                echo 'Stage: Publish artifact'
+            }
+        }
+        stage('Provision test environment') {
+            when {
+                branch 'main'
+            }
+            steps {
+                echo 'Stage: Provision test environment'
+            }
+        }
+        stage('Deploy artifact to test') {
+            when {
+                branch 'main'
+            }
+            steps {
+                echo 'Stage: Deploy artifact to test'
+            }
+        }
+        stage('Perform test') {
+            when {
+                branch 'main'
+            }
+            steps {
+                echo 'Stage: Perform test'
+            }
+        }
+        stage('Validate infrastructure compliancy') {
+            when {
+                branch 'main'
+            }
+            steps {
+                echo 'Stage: Validate infrastructure compliancy'
+            }
+        }
+        stage('Validate exit criteria') {
+            when {
+                branch 'main'
+            }
+            steps {
+                echo 'Stage: Validate exit criteria'
+            }
+        }
+        stage('Perform dual control') {
+            when {
+                branch 'main'
+            }
+            steps {
+                echo 'Stage: Perform dual control'
+            }
+        }
+        stage('Provision production infrastructure') {
+            when {
+                branch 'main'
+            }
+            steps {
+                echo 'Stage: Provision production infrastructure'
+            }
+        }
+        stage('Deploy artifact to production') {
+            when {
+                branch 'main'
+            }
+            steps {
+                echo 'Stage: Deploy artifact to production'
+            }
+        }
+    }
+    
+    // Stage: Notify actor
+    post {
+        success {
+            echo 'Stage: Notify actor - success'
+        }
+        failure {
+            echo 'Stage: Notify actor - failure'
         }
     }
 }
