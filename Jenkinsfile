@@ -23,7 +23,7 @@ pipeline {
         }
         stage('Analyze code') {
             when {
-                branch '${main}'
+                branch "${main}"
             }
             steps {
                 echo 'Stage: Analyze code'
