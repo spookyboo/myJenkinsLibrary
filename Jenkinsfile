@@ -1,7 +1,7 @@
 pipeline {
     environment {
         // Variable used for testing the flow
-        main = 'myFeature'
+        main = 'main'
     }
     agent any
 
