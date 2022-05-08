@@ -1,7 +1,7 @@
 pipeline {
     environment {
         // Variable used for testing the flow
-        main = 'main'
+        main = 'myFeature'
     }
     agent any
 
@@ -23,7 +23,7 @@ pipeline {
         }
         stage('Analyze code') {
             when {
-                branch "${main}"
+                branch '${main}'
             }
             steps {
                 echo 'Stage: Analyze code'
